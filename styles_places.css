@@ -1,0 +1,43 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 3em;
+    color: #5a009d;
+}
+
+h2 {
+    font-size: 2em;
+    color: #5a009d;
+}
+
+.places-list {
+    margin-top: 20px;
+}
+
+.place-item {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 60%;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+.location-number {
+    font-weight: bold;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #5a009d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+   
+}

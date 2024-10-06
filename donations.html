@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Donation Locations - ex-pire!</title>
+    <link rel="stylesheet" href="styles_places.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ex-pire!</h1>
+        <h2>Your Food Pantry Locations</h2>
+        <div id="placesList" class="places-list"></div>
+        <button id="backToFridge">Back to Fridge</button>
+    </div>
+
+    <script>
+        const placesList = document.getElementById('placesList');
+        const places = JSON.parse(localStorage.getItem('places'));
+
+        if (places) {
+            places.forEach((place, index) => {
+                const div = document.createElement('div');
+                div.className = 'place-item';
+                div.innerHTML = `
+                    <p><span class="location-number">Location #${index + 1}</span> - ${place.name}</p>
+                    <p>${place.vicinity}</p>
+                `;
+                placesList.appendChild(div);
+            });
+        }
+
+        document.getElementById('backToFridge').addEventListener('click', () => {
+            window.location.href = 'fridge.html';
+        });
+    </script>
+</body>
+</html>

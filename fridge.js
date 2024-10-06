@@ -42,15 +42,16 @@ document.getElementById('backToAdd').addEventListener('click', function() {
     window.location.href = 'index.html';
 });
 
+// Redirect to compost.html or donations.html with the places data
 document.getElementById('findCompost').addEventListener('click', () => {
-    findPlaces('compost');
+    findPlaces('compost', 'compost.html');
 });
 
 document.getElementById('findFoodShelter').addEventListener('click', () => {
-    findPlaces('food donation');
+    findPlaces('food donation', 'donations.html');
 });
 
-function findPlaces(placeType) {
+function findPlaces(placeType, redirectPage) {
     // Assuming user grants permission for location access
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -67,15 +68,13 @@ function findPlaces(placeType) {
                 radius: '5000', // 5km radius
                 keyword: placeType // Searching for 'compost' or 'food donation'
             };
-            console.log(request);
 
             service.nearbySearch(request, (results, status) => {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    console.log(`Nearby ${placeType} spots:`);
-                    results.forEach((place) => {
-                        console.log(place.name, place.vicinity);
-                        // You can append these results to the DOM or show on a map
-                    });
+                    // Store places data in localStorage for the new page
+                    localStorage.setItem('places', JSON.stringify(results));
+                    // Redirect to the respective page
+                    window.location.href = redirectPage;
                 } else {
                     console.log('Places request failed due to:', status);
                 }
@@ -85,10 +84,3 @@ function findPlaces(placeType) {
         alert('Geolocation is not supported by this browser.');
     }
 }
-
-const resultsDiv = document.getElementById('results');
-results.forEach((place) => {
-    const placeElement = document.createElement('p');
-    placeElement.innerText = `${place.name} - ${place.vicinity}`;
-    resultsDiv.appendChild(placeElement);
-});
