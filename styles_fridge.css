@@ -93,6 +93,7 @@ button {
     font-size: 1rem;
     transition: background-color 0.3s ease;
     width: 100%;
+    margin: 10px 0; /* Added margin for spacing between buttons */
 }
 
 button:hover {

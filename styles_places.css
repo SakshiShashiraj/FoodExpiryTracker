@@ -1,16 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #e6e6fa, #8a2be2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container {
     text-align: center;
-    margin-top: 50px;
+    width: 90%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     font-size: 3em;
-    color: #5a009d;
+    color: #4b0082;
+    margin-bottom: 10px;
 }
 
 h2 {
-    font-size: 2em;
-    color: #5a009d;
+    font-size: 1.5em;
+    color: #4b0082;
+    margin-bottom: 20px;
+    text-decoration: underline;
 }
 
 .places-list {
@@ -18,26 +37,43 @@ h2 {
 }
 
 .place-item {
-    background-color: #f0f0f0;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 15px;
     border-radius: 10px;
     margin: 10px auto;
-    width: 60%;
+    width: 90%;
     text-align: left;
+    font-size: 1em;
+    position: relative;
+    padding-left: 40px;
+}
+
+.place-item::before {
+    content: "📍";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 1.2em;
 }
 
 .location-number {
     font-weight: bold;
+    color: #4b0082;
 }
 
 button {
     margin-top: 20px;
     padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: #5a009d;
+    font-size: 1em;
+    background-color: #4b0082;
     color: white;
     border: none;
     border-radius: 5px;
-   
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #6a0dad;
 }
