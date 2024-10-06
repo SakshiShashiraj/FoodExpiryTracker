@@ -11,8 +11,14 @@
         <h1>ex-pire!</h1>
         <h2>your fridge</h2>
         <div id="fridgeContents" class="fridge-list"></div>
+        <button id="findCompost">Find Nearest Compost Locations</button>
+        <button id="findFoodShelter">Find Food Donation Spots</button>
         <button id="backToAdd">Add More Items</button>
     </div>
+    <div id="results"></div>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr8IAGFu70tIXFBZ0dfRQlQ_n2kgqV5-g&libraries=places"></script>
     <script src="fridge.js" type="module"></script>
+    
 </body>
 </html>

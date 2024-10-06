@@ -41,3 +41,54 @@ displayFridgeContents();
 document.getElementById('backToAdd').addEventListener('click', function() {
     window.location.href = 'index.html';
 });
+
+document.getElementById('findCompost').addEventListener('click', () => {
+    findPlaces('compost');
+});
+
+document.getElementById('findFoodShelter').addEventListener('click', () => {
+    findPlaces('food donation');
+});
+
+function findPlaces(placeType) {
+    // Assuming user grants permission for location access
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            const map = new google.maps.Map(document.createElement('div')); // Dummy div for creating a map
+
+            const service = new google.maps.places.PlacesService(map);
+            const request = {
+                location: userLocation,
+                radius: '5000', // 5km radius
+                keyword: placeType // Searching for 'compost' or 'food donation'
+            };
+            console.log(request);
+
+            service.nearbySearch(request, (results, status) => {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    console.log(`Nearby ${placeType} spots:`);
+                    results.forEach((place) => {
+                        console.log(place.name, place.vicinity);
+                        // You can append these results to the DOM or show on a map
+                    });
+                } else {
+                    console.log('Places request failed due to:', status);
+                }
+            });
+        });
+    } else {
+        alert('Geolocation is not supported by this browser.');
+    }
+}
+
+const resultsDiv = document.getElementById('results');
+results.forEach((place) => {
+    const placeElement = document.createElement('p');
+    placeElement.innerText = `${place.name} - ${place.vicinity}`;
+    resultsDiv.appendChild(placeElement);
+});
